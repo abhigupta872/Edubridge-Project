@@ -1,0 +1,604 @@
+{
+  "info": {
+    "_postman_id": "edubridge-api-collection-2026",
+    "name": "EDUBRIDGE REST APIs",
+    "description": "Production-ready Postman collection for testing the EDUBRIDGE Full-Stack system endpoints including Student, Mentor, Recruiter, Admin, and Authentication modules.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "User Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student2@edubridge.com\",\n  \"password\": \"password123\",\n  \"role\": \"STUDENT\",\n  \"firstName\": \"Emily\",\n  \"lastName\": \"Watson\",\n  \"phone\": \"9998887771\",\n  \"bio\": \"B.Tech CS Student keen on Java frameworks.\",\n  \"currentEducation\": \"Bachelor of Science in CS\",\n  \"institution\": \"State University\",\n  \"graduationYear\": 2027\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/register",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "User Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.environment.set(\"JWT_TOKEN\", jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@edubridge.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "User Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/logout",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Module",
+      "item": [
+        {
+          "name": "Get Profile Info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/profile",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Skills Set",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"Java\",\n  \"Spring Boot\",\n  \"ReactJS\"\n]"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/student/skills",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "skills"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Skill Gap Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/gap-report?positionId=1&isInternship=false",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "gap-report"
+              ],
+              "query": [
+                {
+                  "key": "positionId",
+                  "value": "1"
+                },
+                {
+                  "key": "isInternship",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Apply for Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/apply/job/1?resumeUrl=https://drive.google.com/resume.pdf",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "apply",
+                "job",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "resumeUrl",
+                  "value": "https://drive.google.com/resume.pdf"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Booked Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/sessions",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "sessions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Available Mentor Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/sessions/available",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "sessions",
+                "available"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Book Mentor Session Slot",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/student/sessions/book/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "student",
+                "sessions",
+                "book",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mentor Module",
+      "item": [
+        {
+          "name": "Schedule Mentorship Slot",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced Spring Security Flow\",\n  \"description\": \"Understanding FilterChain and custom authorization providers.\",\n  \"dateTime\": \"2026-06-28T14:00:00\",\n  \"durationMinutes\": 60,\n  \"meetingLink\": \"https://meet.google.com/abc-defg-hij\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/mentor/sessions",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "mentor",
+                "sessions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Session Completed with Feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/mentor/sessions/complete/2?feedback=Alex demonstrated solid foundations in core Java. Advised learning Spring Data JPA.",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "mentor",
+                "sessions",
+                "complete",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "feedback",
+                  "value": "Alex demonstrated solid foundations in core Java. Advised learning Spring Data JPA."
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recruiter Module",
+      "item": [
+        {
+          "name": "Post Job Vacancy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Senior React Developer\",\n  \"description\": \"Requires robust understanding of state libraries and styling interfaces.\",\n  \"companyName\": \"TechCorp Systems\",\n  \"location\": \"San Francisco, CA\",\n  \"salaryRange\": \"$110,000 - $130,000\",\n  \"requiredSkills\": [\n    \"ReactJS\",\n    \"Javascript\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/recruiter/jobs",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "recruiter",
+                "jobs"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Evaluate Candidate Application",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/recruiter/applications/evaluate/1?status=SHORTLISTED&feedback=Impressive portfolio projects. Shortlisted for technical round.",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "recruiter",
+                "applications",
+                "evaluate",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "SHORTLISTED"
+                },
+                {
+                  "key": "feedback",
+                  "value": "Impressive portfolio projects. Shortlisted for technical round."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Skill-Based Student Search",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/recruiter/students/search?skills=Java,ReactJS",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "recruiter",
+                "students",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "skills",
+                  "value": "Java,ReactJS"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Module",
+      "item": [
+        {
+          "name": "Get Platform Activity Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/admin/dashboard-stats",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard-stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/admin/users",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User Account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/admin/users/2",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "2"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses Module",
+      "item": [
+        {
+          "name": "List Courses (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/courses/list",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "courses",
+                "list"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Course (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Cloud Computing Foundations\",\n  \"description\": \"Learn virtualization, hypervisors, and serverless compute paradigms.\",\n  \"instructor\": \"Albert Einstein\",\n  \"platform\": \"AWS Academy\",\n  \"link\": \"http://localhost:3000/courses/cloud\",\n  \"difficultyLevel\": \"Beginner\",\n  \"rating\": 4.7,\n  \"tags\": \"Cloud,AWS\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/courses",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "courses"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080/api",
+      "type": "string"
+    },
+    {
+      "key": "JWT_TOKEN",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

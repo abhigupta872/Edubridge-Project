@@ -1,0 +1,447 @@
+/* EDUBRIDGE Premium Light Theme Design Tokens & Utilities */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Clean, Minimal, Premium Light Theme Colors */
+  --bg-primary: #f8fafc;       /* Slate 50 - Soft light background */
+  --bg-secondary: #ffffff;     /* Pure White for cards and containers */
+  --bg-glass: #ffffff;         /* Solid white backdrop */
+  --bg-glass-hover: #f1f5f9;   /* Slate 100 - hover state */
+  
+  --primary: #2563eb;          /* Premium Blue */
+  --primary-glow: rgba(37, 99, 235, 0.15);
+  --secondary: #7c3aed;        /* Premium Purple */
+  --secondary-glow: rgba(124, 58, 237, 0.15);
+  --accent: #10b981;           /* Emerald Green */
+  
+  --success: #22c55e;          /* Success Green */
+  --warning: #f59e0b;          /* Warning Yellow */
+  --danger: #ef4444;           /* Danger Red */
+  
+  --text-main: #1e293b;        /* Slate 800 - High contrast text */
+  --text-muted: #64748b;       /* Slate 500 - Secondary text */
+  --border-color: #e2e8f0;     /* Slate 200 - Soft borders */
+  --border-glow: #2563eb;      /* Blue glow for active states */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphic Panel / Premium Card Class */
+.glass-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+  box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.08), 0 10px 10px -5px rgba(37, 99, 235, 0.03);
+  background: var(--bg-secondary);
+}
+
+/* Text Gradient Utilities */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Premium Rounded Buttons */
+.btn-premium-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.25);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
+}
+
+.btn-premium-primary:active {
+  transform: translateY(0);
+}
+
+.btn-premium-secondary {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.25);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(124, 58, 237, 0.35);
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+}
+
+.btn-premium-outline {
+  background: transparent;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 11px 27px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-premium-outline:hover {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.04);
+  color: var(--primary) !important;
+}
+
+/* Custom Badges */
+.badge-premium {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+.badge-premium-accent {
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--success);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Navigation Overrides */
+.navbar-premium {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary) !important;
+  background: rgba(37, 99, 235, 0.04);
+  border-radius: 8px;
+}
+
+/* Form Controls with Focus Glow */
+.form-premium {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.form-premium:focus {
+  background: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
+  outline: none;
+}
+
+.form-premium::placeholder {
+  color: #94a3b8;
+}
+
+/* Dashboard Statistics Box */
+.stat-box {
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  background: #ffffff;
+}
+
+.stat-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+  line-height: 1;
+  color: var(--text-main);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Custom CSS classes for validation and strength indicators */
+.strength-meter {
+  height: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Success Checkmark Animation */
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+.success-checkmark .check-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid #22c55e;
+}
+
+.success-checkmark .check-icon::before,
+.success-checkmark .check-icon::after {
+  content: '';
+  height: 100px;
+  position: absolute;
+  background: #ffffff;
+  transform: rotate(-45deg);
+}
+
+.success-checkmark .check-icon::before {
+  top: 3px;
+  left: -2px;
+  width: 30px;
+  transform-origin: 100% 50%;
+  border-radius: 100px 0 0 100px;
+}
+
+.success-checkmark .check-icon::after {
+  top: 0;
+  left: 30px;
+  width: 60px;
+  transform-origin: 0 50%;
+  border-radius: 0 100px 100px 0;
+}
+
+.success-checkmark .check-icon .icon-line {
+  height: 5px;
+  background-color: #22c55e;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+
+.success-checkmark .check-icon .icon-line.line-tip {
+  top: 46px;
+  left: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: icon-line-tip 0.75s;
+}
+
+.success-checkmark .check-icon .icon-line.line-long {
+  top: 38px;
+  right: 8px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: icon-line-long 0.75s;
+}
+
+.success-checkmark .check-icon .icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid rgba(34, 197, 94, 0.2);
+  box-sizing: content-box;
+  position: absolute;
+}
+
+.success-checkmark .check-icon .icon-fix {
+  top: 8px;
+  left: 28px;
+  width: 5px;
+  height: 85px;
+  position: absolute;
+  z-index: 1;
+  background: #ffffff;
+  transform: rotate(-45deg);
+}
+
+@keyframes icon-line-tip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 46px;
+  }
+}
+
+@keyframes icon-line-long {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Ripple effect utility */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover scales */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Google Sign-in Button Styles */
+.btn-google {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-google:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
