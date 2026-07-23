@@ -96,22 +96,26 @@ EDUBRIDGE utilizes an MVC layered architecture communicating via secure REST API
 ---
 
 ## 🔑 Default Accounts (Seed Data)
-For immediate testing, use the following credentials (Password for all is `password123`):
+For immediate testing, use the following credentials:
 
 1. **Student Account**
    - **Email:** `student@edubridge.com`
+   - **Password:** `student123`
    - **Use Case:** Manage skills, view job recommendations, generate gap diagnostics, book mock interviews.
 
 2. **Mentor Account**
    - **Email:** `mentor@edubridge.com`
+   - **Password:** `mentor123`
    - **Use Case:** Manage profile, schedule slots, view booked rosters, submit mentee session evaluations.
 
 3. **Recruiter Account**
    - **Email:** `recruiter@edubridge.com`
+   - **Password:** `recruiter123`
    - **Use Case:** Post jobs/internships, search student database by skill matching, shortlist candidate resumes.
 
 4. **Admin Account**
    - **Email:** `admin@edubridge.com`
+   - **Password:** `admin123`
    - **Use Case:** View platform metrics, delete accounts, register/edit course listings.
 
 ---

@@ -3,10 +3,10 @@
 -- 1. Insert Users (BCrypt hashes for 'password123')
 -- Hash: $2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy
 INSERT INTO users (id, email, password, role, is_active) VALUES
-(1, 'admin@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'ADMIN', TRUE),
-(2, 'student@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'STUDENT', TRUE),
-(3, 'mentor@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'MENTOR', TRUE),
-(4, 'recruiter@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'RECRUITER', TRUE)
+(1, 'admin@edubridge.com', '$2a$10$RDFcc0msRTwSgGhoxN7OL.aL6K2XMRhktEj89WymkgNAlcO.XZuia', 'ADMIN', TRUE),
+(2, 'student@edubridge.com', '$2a$10$KbSXirbs1aoBjrCOfa3P6.PvbWunDcYxMw4h3mdCvU.lAKny8uxke', 'STUDENT', TRUE),
+(3, 'mentor@edubridge.com', '$2a$10$6BYMKCK2YRK3GhjsxfpdruEeV2tDkXyYWcnhGfuEw9AzqX/shVEVu', 'MENTOR', TRUE),
+(4, 'recruiter@edubridge.com', '$2a$10$tV6xsdmaDnpJqq45AeeUm.ghDWRS/WDhrf/cyjal9kIzDja8uoOG.', 'RECRUITER', TRUE)
 ON DUPLICATE KEY UPDATE password = VALUES(password);
 
 -- 2. Insert Profiles
@@ -36,9 +36,10 @@ INSERT IGNORE INTO student_skills (student_id, skill_id) VALUES
 
 -- 5. Courses
 INSERT IGNORE INTO courses (id, title, description, instructor, platform, link, difficulty_level, rating, tags) VALUES
-(1, 'Spring Boot Masterclass', 'Comprehensive guide to building Spring Boot REST APIs.', 'Dr. Sarah Jenkins', 'EduBridge Academy', 'http://localhost:3000/courses/1', 'Intermediate', 4.8, 'Java,Spring Boot'),
-(2, 'React Advanced Concepts', 'Master hooks, state management, and custom routers.', 'John Doe', 'Coursera', 'http://localhost:3000/courses/2', 'Advanced', 4.6, 'ReactJS'),
-(3, 'MySQL Database Design', 'Learn schema normalization, keys, indexing and SQL optimization.', 'Jane Miller', 'Udemy', 'http://localhost:3000/courses/3', 'Beginner', 4.5, 'MySQL');
+(1, 'Spring Boot Masterclass', 'Comprehensive guide to building Spring Boot REST APIs.', 'Dr. Sarah Jenkins', 'EduBridge Academy', 'https://spring.io/projects/spring-boot', 'Intermediate', 4.8, 'Java,Spring Boot'),
+(2, 'React Advanced Concepts', 'Master hooks, state management, and custom routers.', 'John Doe', 'Coursera', 'https://react.dev', 'Advanced', 4.6, 'ReactJS'),
+(3, 'MySQL Database Design', 'Learn schema normalization, keys, indexing and SQL optimization.', 'Jane Miller', 'Udemy', 'https://www.udemy.com', 'Beginner', 4.5, 'MySQL');
+
 
 -- 6. Jobs
 INSERT IGNORE INTO jobs (id, title, description, company_name, location, salary_range, recruiter_id) VALUES
@@ -68,3 +69,29 @@ INSERT IGNORE INTO sessions (id, mentor_id, student_id, title, description, date
 INSERT IGNORE INTO notifications (id, user_id, message, is_read, type, created_at) VALUES
 (1, 2, 'Welcome to EduBridge! Complete your profile to get matched.', FALSE, 'SYSTEM', CURRENT_TIMESTAMP),
 (2, 2, 'New Session Alert: Dr. Sarah has scheduled an available slot.', FALSE, 'SESSION_ALERT', CURRENT_TIMESTAMP);
+
+-- 12. Seed Quizzes
+INSERT IGNORE INTO quizzes (id, mentor_id, title, description, category, difficulty, time_limit, total_marks, passing_percentage, status, created_at) VALUES
+(1, 3, 'Java OOP Fundamentals', 'Test your knowledge of Java inheritance, polymorphism, encapsulation, and abstraction with real-world MCQs.', 'Java', 'Beginner', 10, 3, 66, 'PUBLISHED', CURRENT_TIMESTAMP);
+
+-- 13. Seed Questions
+INSERT IGNORE INTO questions (id, quiz_id, question_text, explanation, marks) VALUES
+(1, 1, 'Which keyword is used to inherit a class in Java?', 'The "extends" keyword is used to inherit properties and methods of a parent class.', 1),
+(2, 1, 'What is the default value of a local variable in Java?', 'Local variables in Java do not have default values. They must be initialized before use.', 1),
+(3, 1, 'Which of the following is not a pillar of OOP?', 'Compilation is a process of converting source code into bytecode, not a structural pillar of Object-Oriented Programming.', 1);
+
+-- 14. Seed Question Options
+INSERT IGNORE INTO options (id, question_id, option_text, is_correct) VALUES
+(1, 1, 'extends', TRUE),
+(2, 1, 'implements', FALSE),
+(3, 1, 'inherits', FALSE),
+(4, 1, 'exports', FALSE),
+(5, 2, '0', FALSE),
+(6, 2, 'null', FALSE),
+(7, 2, 'No default value', TRUE),
+(8, 2, 'depends on system', FALSE),
+(9, 3, 'Inheritance', FALSE),
+(10, 3, 'Compilation', TRUE),
+(11, 3, 'Polymorphism', FALSE),
+(12, 3, 'Encapsulation', FALSE);
+

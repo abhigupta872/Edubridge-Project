@@ -62,4 +62,13 @@ public class CourseController {
         response.put("message", "Course deleted successfully!");
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/{id}/click")
+    @PreAuthorize("hasAnyRole('STUDENT', 'MENTOR', 'RECRUITER', 'ADMIN')")
+    public ResponseEntity<?> recordClick(@PathVariable Long id) {
+        courseService.incrementClickCount(id);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Analytics click successfully recorded.");
+        return ResponseEntity.ok(response);
+    }
 }

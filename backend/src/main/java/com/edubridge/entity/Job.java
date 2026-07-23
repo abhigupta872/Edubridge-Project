@@ -47,4 +47,12 @@ public class Job {
     )
     @Builder.Default
     private Set<Skill> requiredSkills = new HashSet<>();
+
+    @Column(length = 30)
+    @Builder.Default
+    private String status = "ACTIVE";
+
+    @Column(name = "posted_date")
+    @Builder.Default
+    private java.time.LocalDateTime postedDate = java.time.LocalDateTime.now();
 }

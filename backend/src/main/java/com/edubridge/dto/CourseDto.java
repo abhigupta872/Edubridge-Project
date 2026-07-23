@@ -19,4 +19,5 @@ public class CourseDto {
     private String difficultyLevel;
     private Double rating;
     private String tags; // e.g. "Java, Spring Boot"
+    private Integer clickCount;
 }

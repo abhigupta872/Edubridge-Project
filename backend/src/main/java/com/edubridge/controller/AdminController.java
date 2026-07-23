@@ -91,4 +91,20 @@ public class AdminController {
         response.put("message", "Internship deleted successfully!");
         return ResponseEntity.ok(response);
     }
+
+    @PutMapping("/jobs/{jobId}/status")
+    public ResponseEntity<?> updateJobStatus(@PathVariable Long jobId, @RequestParam String status) {
+        com.edubridge.dto.JobDto jobDto = recruiterService.getJobById(jobId);
+        jobDto.setStatus(status);
+        com.edubridge.dto.JobDto updated = recruiterService.updateJob(jobId, jobDto);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/internships/{internshipId}/status")
+    public ResponseEntity<?> updateInternshipStatus(@PathVariable Long internshipId, @RequestParam String status) {
+        com.edubridge.dto.InternshipDto internshipDto = recruiterService.getInternshipById(internshipId);
+        internshipDto.setStatus(status);
+        com.edubridge.dto.InternshipDto updated = recruiterService.updateInternship(internshipId, internshipDto);
+        return ResponseEntity.ok(updated);
+    }
 }

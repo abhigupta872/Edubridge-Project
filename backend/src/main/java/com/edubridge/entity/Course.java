@@ -39,4 +39,8 @@ public class Course {
 
     @Column(length = 255)
     private String tags; // Comma-separated list of target skills, e.g. "Java,Spring"
+
+    @Column(name = "click_count")
+    @Builder.Default
+    private Integer clickCount = 0;
 }

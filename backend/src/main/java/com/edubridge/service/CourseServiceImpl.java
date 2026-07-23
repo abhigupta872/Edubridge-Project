@@ -29,6 +29,7 @@ public class CourseServiceImpl implements CourseService {
                 .difficultyLevel(dto.getDifficultyLevel())
                 .rating(dto.getRating())
                 .tags(dto.getTags())
+                .clickCount(0)
                 .build();
 
         Course saved = courseRepository.save(course);
@@ -77,6 +78,15 @@ public class CourseServiceImpl implements CourseService {
         return mapToDto(course);
     }
 
+    @Override
+    @Transactional
+    public void incrementClickCount(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with ID: " + courseId));
+        course.setClickCount(course.getClickCount() == null ? 1 : course.getClickCount() + 1);
+        courseRepository.save(course);
+    }
+
     private CourseDto mapToDto(Course c) {
         return CourseDto.builder()
                 .id(c.getId())
@@ -88,6 +98,7 @@ public class CourseServiceImpl implements CourseService {
                 .difficultyLevel(c.getDifficultyLevel())
                 .rating(c.getRating())
                 .tags(c.getTags())
+                .clickCount(c.getClickCount() != null ? c.getClickCount() : 0)
                 .build();
     }
 }

@@ -194,10 +194,10 @@ CREATE TABLE notifications (
 
 -- Users
 INSERT INTO users (id, email, password, role, is_active) VALUES
-(1, 'admin@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'ADMIN', TRUE),
-(2, 'student@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'STUDENT', TRUE),
-(3, 'mentor@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'MENTOR', TRUE),
-(4, 'recruiter@edubridge.com', '$2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy', 'RECRUITER', TRUE);
+(1, 'admin@edubridge.com', '$2a$10$RDFcc0msRTwSgGhoxN7OL.aL6K2XMRhktEj89WymkgNAlcO.XZuia', 'ADMIN', TRUE),
+(2, 'student@edubridge.com', '$2a$10$KbSXirbs1aoBjrCOfa3P6.PvbWunDcYxMw4h3mdCvU.lAKny8uxke', 'STUDENT', TRUE),
+(3, 'mentor@edubridge.com', '$2a$10$6BYMKCK2YRK3GhjsxfpdruEeV2tDkXyYWcnhGfuEw9AzqX/shVEVu', 'MENTOR', TRUE),
+(4, 'recruiter@edubridge.com', '$2a$10$tV6xsdmaDnpJqq45AeeUm.ghDWRS/WDhrf/cyjal9kIzDja8uoOG.', 'RECRUITER', TRUE);
 
 -- Profiles
 INSERT INTO students (id, first_name, last_name, phone, bio, current_education, institution, graduation_year) VALUES

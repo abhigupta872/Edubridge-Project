@@ -72,6 +72,8 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .salaryRange(jobDto.getSalaryRange())
                 .recruiter(recruiter)
                 .requiredSkills(mapSkillNamesToEntities(jobDto.getRequiredSkills()))
+                .status("ACTIVE")
+                .postedDate(java.time.LocalDateTime.now())
                 .build();
 
         Job saved = jobRepository.save(job);
@@ -90,6 +92,9 @@ public class RecruiterServiceImpl implements RecruiterService {
         job.setLocation(jobDto.getLocation());
         job.setSalaryRange(jobDto.getSalaryRange());
         job.setRequiredSkills(mapSkillNamesToEntities(jobDto.getRequiredSkills()));
+        if (jobDto.getStatus() != null) {
+            job.setStatus(jobDto.getStatus());
+        }
 
         Job updated = jobRepository.save(job);
         return mapToJobDto(updated);
@@ -141,6 +146,8 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .stipend(internshipDto.getStipend())
                 .recruiter(recruiter)
                 .requiredSkills(mapSkillNamesToEntities(internshipDto.getRequiredSkills()))
+                .status("ACTIVE")
+                .postedDate(java.time.LocalDateTime.now())
                 .build();
 
         Internship saved = internshipRepository.save(internship);
@@ -160,6 +167,9 @@ public class RecruiterServiceImpl implements RecruiterService {
         internship.setDurationMonths(dto.getDurationMonths());
         internship.setStipend(dto.getStipend());
         internship.setRequiredSkills(mapSkillNamesToEntities(dto.getRequiredSkills()));
+        if (dto.getStatus() != null) {
+            internship.setStatus(dto.getStatus());
+        }
 
         Internship updated = internshipRepository.save(internship);
         return mapToInternshipDto(updated);
@@ -261,6 +271,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         Set<String> skills = j.getRequiredSkills().stream()
                 .map(Skill::getName)
                 .collect(Collectors.toSet());
+        String recName = j.getRecruiter() != null ? (j.getRecruiter().getFirstName() + " " + j.getRecruiter().getLastName()) : "Unknown";
 
         return JobDto.builder()
                 .id(j.getId())
@@ -270,7 +281,10 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .location(j.getLocation())
                 .salaryRange(j.getSalaryRange())
                 .requiredSkills(skills)
-                .recruiterId(j.getRecruiter().getId())
+                .recruiterId(j.getRecruiter() != null ? j.getRecruiter().getId() : null)
+                .recruiterName(recName)
+                .status(j.getStatus())
+                .postedDate(j.getPostedDate())
                 .build();
     }
 
@@ -278,6 +292,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         Set<String> skills = i.getRequiredSkills().stream()
                 .map(Skill::getName)
                 .collect(Collectors.toSet());
+        String recName = i.getRecruiter() != null ? (i.getRecruiter().getFirstName() + " " + i.getRecruiter().getLastName()) : "Unknown";
 
         return InternshipDto.builder()
                 .id(i.getId())
@@ -288,7 +303,10 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .durationMonths(i.getDurationMonths())
                 .stipend(i.getStipend())
                 .requiredSkills(skills)
-                .recruiterId(i.getRecruiter().getId())
+                .recruiterId(i.getRecruiter() != null ? i.getRecruiter().getId() : null)
+                .recruiterName(recName)
+                .status(i.getStatus())
+                .postedDate(i.getPostedDate())
                 .build();
     }
 

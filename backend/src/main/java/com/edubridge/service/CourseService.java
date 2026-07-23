@@ -10,4 +10,5 @@ public interface CourseService {
     void deleteCourse(Long courseId);
     List<CourseDto> getAllCourses();
     CourseDto getCourseById(Long courseId);
+    void incrementClickCount(Long courseId);
 }

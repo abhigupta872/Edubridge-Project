@@ -20,4 +20,7 @@ public class JobDto {
     private String salaryRange;
     private Set<String> requiredSkills;
     private Long recruiterId;
+    private String recruiterName;
+    private String status;
+    private java.time.LocalDateTime postedDate;
 }
