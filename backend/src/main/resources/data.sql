@@ -1,7 +1,6 @@
 -- Seed data for automatic database initialization on application startup
 
--- 1. Insert Users (BCrypt hashes for 'password123')
--- Hash: $2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy
+-- 1. Insert Users (BCrypt hashes for role-specific passwords: admin123, student123, mentor123, recruiter123)
 INSERT INTO users (id, email, password, role, is_active) VALUES
 (1, 'admin@edubridge.com', '$2a$10$RDFcc0msRTwSgGhoxN7OL.aL6K2XMRhktEj89WymkgNAlcO.XZuia', 'ADMIN', TRUE),
 (2, 'student@edubridge.com', '$2a$10$KbSXirbs1aoBjrCOfa3P6.PvbWunDcYxMw4h3mdCvU.lAKny8uxke', 'STUDENT', TRUE),

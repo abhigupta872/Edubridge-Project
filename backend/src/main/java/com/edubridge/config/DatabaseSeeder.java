@@ -30,14 +30,11 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String defaultPassword = "password123";
-        String encodedPassword = passwordEncoder.encode(defaultPassword);
-
-        // Seed users and force correct BCrypt passwords
-        seedUser("admin@edubridge.com", UserRole.ADMIN, encodedPassword);
-        seedUser("student@edubridge.com", UserRole.STUDENT, encodedPassword);
-        seedUser("mentor@edubridge.com", UserRole.MENTOR, encodedPassword);
-        seedUser("recruiter@edubridge.com", UserRole.RECRUITER, encodedPassword);
+        // Seed users and force correct BCrypt passwords matching README credentials
+        seedUser("admin@edubridge.com", UserRole.ADMIN, passwordEncoder.encode("admin123"));
+        seedUser("student@edubridge.com", UserRole.STUDENT, passwordEncoder.encode("student123"));
+        seedUser("mentor@edubridge.com", UserRole.MENTOR, passwordEncoder.encode("mentor123"));
+        seedUser("recruiter@edubridge.com", UserRole.RECRUITER, passwordEncoder.encode("recruiter123"));
     }
 
     private void seedUser(String email, UserRole role, String encodedPassword) {

@@ -188,8 +188,8 @@ CREATE TABLE notifications (
 
 -- ==========================================
 -- INSERT SEED DATA
--- BCrypt password hashes are for the text: "password123"
--- (Hash: $2a$10$lh1Wq43TqWlU6hQjG3Nq5eyq24oR2hF3sXyq5f8s.Z7p1QxQfKqPy)
+-- BCrypt password hashes correspond to role-specific credentials:
+-- admin123, student123, mentor123, recruiter123
 -- ==========================================
 
 -- Users
